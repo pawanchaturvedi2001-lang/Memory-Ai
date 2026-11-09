@@ -1,5 +1,6 @@
 import os
 import sys
+import time
 import pytest
 import asyncio
 import httpx
@@ -19,8 +20,9 @@ def test_complete_backend_workflow():
             assert res.json()["status"] == "healthy"
 
             # 2. Register a new user
+            test_email = f"testdev_{int(time.time())}@memoryai.io"
             reg_res = await client.post("/api/auth/register", json={
-                "email": "testdev@memoryai.io",
+                "email": test_email,
                 "password": "strongpassword123",
                 "full_name": "Test Engineer",
                 "role": "Manager"

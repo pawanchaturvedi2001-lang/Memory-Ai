@@ -127,9 +127,16 @@ class AIService:
                     current_section = sec_type
                     break
 
-            # Check if this line looks like an item (bullet point, numbered item, or strong statement)
-            is_bullet = bool(re.match(r'^(?:[-*•]|\d+[\.)])\s+', line))
-            clean_item_text = re.sub(r'^(?:[-*•]|\d+[\.)])\s+', '', line).strip()
+            # Check if this line looks like an item (bullet point, numbered item, or labeled prefix)
+            is_bullet = bool(
+                re.match(r'^(?:[-*•]|\d+[\.)]|(?:ADR|BUG|TASK|TODO|DECISION|DEFECT|RISK|DEPENDENCY)[\w\-]*:?)\s*', line, re.IGNORECASE)
+                or any(kw in lower_line for kw in ["decision:", "bug:", "task:", "defect:", "adr-", "bug-", "status: unresolved"])
+            )
+            clean_item_text = re.sub(
+                r'^(?:[-*•]|\d+[\.)])\s*', '', line
+            ).strip()
+            if not clean_item_text or len(clean_item_text) < 5:
+                clean_item_text = line.strip()
 
             if is_bullet and len(clean_item_text) > 10:
                 item_type = "context"
