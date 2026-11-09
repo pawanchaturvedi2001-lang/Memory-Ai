@@ -124,3 +124,29 @@ Verifies:
 - Approval governance workflow
 - ReportLab PDF generation
 - Dashboard statistics calculation
+
+---
+
+## 8. Cloud Deployment (1-Click Launch)
+
+Project Memory AI is pre-configured for cloud deployment on **Render** (FastAPI Backend) and **Vercel** (React Frontend).
+
+### Step 1: Deploy Backend to Render (1-Click)
+Deploy the FastAPI backend and auto-run database migrations:
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/pawanchaturvedi2001-lang/Memory-Ai)
+
+- **Blueprint File:** Root `render.yaml` handles build, database setup, and Uvicorn server startup automatically.
+- Once deployed, copy your Render service URL (e.g., `https://memory-ai-backend.onrender.com`).
+- Verify API Health: `https://<YOUR-RENDER-BACKEND>/api/health` -> `{"status": "healthy"}`
+- Interactive Swagger UI: `https://<YOUR-RENDER-BACKEND>/docs`
+
+### Step 2: Deploy Frontend to Vercel (1-Click)
+Deploy the React 19 + Vite dashboard:
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/pawanchaturvedi2001-lang/Memory-Ai&root-directory=frontend&env=VITE_API_URL&envDescription=Backend%20API%20Base%20URL%20from%20Render)
+
+- **Root Directory:** `frontend`
+- **Framework Preset:** Vite
+- **Environment Variable:** Set `VITE_API_URL` to your Render backend URL (e.g. `https://memory-ai-backend.onrender.com`).
+

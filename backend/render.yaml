@@ -1,5 +1,5 @@
 services:
-  # FastAPI Backend Web Service
+  # Project Memory AI - FastAPI Backend Web Service
   - type: web
     name: memory-ai-backend
     runtime: python
@@ -16,7 +16,3 @@ services:
         value: sqlite:///./memory_ai.db
       - key: AI_PROVIDER
         value: gemini
-    disk:
-      name: memory-ai-uploads
-      mountPath: /opt/render/project/src/backend/uploads
-      sizeGB: 1
