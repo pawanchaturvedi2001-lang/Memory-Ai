@@ -1,7 +1,16 @@
 import axios from 'axios';
 
+// Support production VITE_API_URL (e.g. https://memory-ai-backend.onrender.com)
+// In local dev, falls back to '/api' via Vite proxy
+const getBaseUrl = () => {
+  const envUrl = import.meta.env.VITE_API_URL;
+  if (!envUrl) return '/api';
+  const clean = envUrl.replace(/\/+$/, '');
+  return clean.endsWith('/api') ? clean : `${clean}/api`;
+};
+
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: getBaseUrl(),
   timeout: 30000,
 });
 
@@ -22,7 +31,6 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response && error.response.status === 401) {
-      // If unauthorized and not already on login page
       if (!window.location.pathname.includes('/login') && !window.location.pathname.includes('/register')) {
         localStorage.removeItem('memory_ai_token');
         localStorage.removeItem('memory_ai_user');

@@ -1,0 +1,22 @@
+services:
+  # FastAPI Backend Web Service
+  - type: web
+    name: memory-ai-backend
+    runtime: python
+    rootDir: backend
+    plan: free
+    buildCommand: pip install -r requirements.txt && alembic upgrade head
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        value: sqlite:///./memory_ai.db
+      - key: AI_PROVIDER
+        value: gemini
+    disk:
+      name: memory-ai-uploads
+      mountPath: /opt/render/project/src/backend/uploads
+      sizeGB: 1
