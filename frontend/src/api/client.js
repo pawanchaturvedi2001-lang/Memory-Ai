@@ -3,7 +3,7 @@ import axios from 'axios';
 // Support production VITE_API_URL (e.g. https://memory-ai-backend.onrender.com)
 // In local dev, falls back to '/api' via Vite proxy
 const getBaseUrl = () => {
-  const envUrl = import.meta.env.VITE_API_URL;
+  const envUrl = import.meta.env.VITE_API_BASE_URL || import.meta.env.VITE_API_URL;
   if (!envUrl) return '/api';
   const clean = envUrl.replace(/\/+$/, '');
   return clean.endsWith('/api') ? clean : `${clean}/api`;
