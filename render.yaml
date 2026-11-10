@@ -1,7 +1,7 @@
 services:
   # Project Memory AI - FastAPI Backend Web Service
   - type: web
-    name: memory-ai-backend
+    name: project-memory-ai-backend
     runtime: python
     rootDir: backend
     plan: free

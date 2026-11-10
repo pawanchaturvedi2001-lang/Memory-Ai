@@ -137,7 +137,7 @@ Deploy the FastAPI backend and auto-run database migrations:
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/pawanchaturvedi2001-lang/Memory-Ai)
 
 - **Blueprint File:** Root `render.yaml` handles build, database setup, and Uvicorn server startup automatically.
-- Once deployed, copy your Render service URL (e.g., `https://memory-ai-backend.onrender.com`).
+- Once deployed, copy your Render service URL (e.g., `https://project-memory-ai-backend.onrender.com`).
 - Verify API Health: `https://<YOUR-RENDER-BACKEND>/api/health` -> `{"status": "healthy"}`
 - Interactive Swagger UI: `https://<YOUR-RENDER-BACKEND>/docs`
 
@@ -148,5 +148,5 @@ Deploy the React 19 + Vite dashboard:
 
 - **Root Directory:** `frontend`
 - **Framework Preset:** Vite
-- **Environment Variable:** Set `VITE_API_URL` to your Render backend URL (e.g. `https://memory-ai-backend.onrender.com`).
+- **Environment Variable:** Set `VITE_API_URL` to your Render backend URL (e.g. `https://project-memory-ai-backend.onrender.com`).
 
